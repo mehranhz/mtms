@@ -47,7 +47,7 @@
             <button class="rounded-lg bg-indigo-600 mb-4 px-4 py-2 text-white "
                     wire:click="activateForm">{{__('create new test case')}}</button>
         @endif
-        <table class="table table-fixed table-auto w-full border-collapse border border-2 border-slate-500">
+        <table class="table table-fixed table-auto w-full border-collapse border border-2 border-slate-500 text-gray-100">
             <thead class="table-header-group w-48">
             <tr class="w-48">
                 <th class="border-collapse border border-slate-500 ">{{__('id')}}</th>
