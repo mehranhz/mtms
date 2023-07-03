@@ -16,6 +16,6 @@ class App extends Model
     }
 
     public function testTemplates(){
-        return $this->belongsToMany(TestTemplate::class);
+        return $this->hasMany(TestTemplate::class);
     }
 }

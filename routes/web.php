@@ -5,8 +5,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TestCaseController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\TestTemplateController;
+use App\Http\Livewire\Apps;
 use App\Http\Livewire\SubmitTest;
 use App\Http\Livewire\TemplateTestCases;
+use App\Http\Livewire\TestTemplates;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Test;
 
@@ -34,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('/app',AppController::class);
+    Route::get('/app/{app}/scenarios',TestTemplates::class)->name('app.scenarios');
     Route::resource('/test-template',TestTemplateController::class);
     Route::resource('/test-case',TestCaseController::class);
     Route::get('/test-template/add-test-case/{testTemplate}',[TestCaseController::class,'create'])->name('test-templates.add-test-case');

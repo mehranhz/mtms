@@ -1,5 +1,8 @@
 <div class="flex justify-center w-full py-4 dark:text-indigo-200/50">
     <div class="shadow dark:bg-gray-600/50 w-3/4 p-4 rounded-lg">
+        <h1 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight mb-4">{{__('Application: ')}} {{$testTemplate->app->title}}</h1>
+        <h1 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight mb-4">{{__('Scenario: ')}} {{$testTemplate->title}}</h1>
+
         @if($showCreateForm)
             {{$this->dispatchBrowserEvent('contentChanged', ['payload' => 'load-ckeditor'])}}
             <form action="{{route('test-case.store')}}" method="post" class="mx-6">
@@ -48,7 +51,6 @@
             <thead class="table-header-group w-48">
             <tr class="w-48">
                 <th class="border-collapse border border-slate-500 ">{{__('id')}}</th>
-                <th class="border-collapse border border-slate-500 ">{{__('template')}}</th>
                 <th class="border-collapse border border-slate-500 ">{{__('title')}}</th>
                 <th class="border-collapse border border-slate-500 ">{{__('description')}}</th>
                 <th class="border-collapse border border-slate-500 ">{{__('creator')}}</th>
@@ -60,7 +62,6 @@
             @foreach($testCases as $testCase)
                 <tr class="table-row" wire:key="{{$testCase->id}}">
                     <td class="table-cell text-center border border-slate-700">{{$testCase->id}}</td>
-                    <td class="table-cell text-center border border-slate-700">{{$testCase->testTemplate->title}}</td>
                     <td class="table-cell text-center border border-slate-700">{{$testCase->title}}</td>
                     <td class="table-cell text-center border border-slate-700">{{$testCase->description}}</td>
                     <td class="table-cell text-center border border-slate-700">{{$testCase->user->name}}
