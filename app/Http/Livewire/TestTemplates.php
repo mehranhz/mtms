@@ -10,14 +10,22 @@ class TestTemplates extends Component
 {
     public $templates = [];
     public $apps = [];
+    public $appIsSet = false;
+    public $app;
 
     public bool $showCreateForm = false;
 
-    public function __construct($id = null)
+    public function mount(App $app)
     {
-        parent::__construct($id);
-        $this->templates = TestTemplate::all() ?? [];
-        $this->apps = App::all() ?? [];
+        if ($app->id) {
+            $this->appIsSet = true;
+            $this->app = $app;
+            $this->templates = $app->testTemplates ?? [];
+        } else {
+            $this->templates = TestTemplate::all() ?? [];
+            $this->apps = App::all() ?? [];
+        }
+
     }
 
     public function activateForm()

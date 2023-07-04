@@ -9,7 +9,7 @@ class TestCase extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title','description','test_template_id'];
+    protected $fillable = ['title','description','test_template_id','test_steps','test_data','exception_result'];
 
     public function user(){
         return $this->belongsTo(User::class);

@@ -69,4 +69,9 @@ class AppController extends Controller
     {
         //
     }
+
+    public function scenarios(App $app)
+    {
+        return view('test-template.index',compact('app'));
+    }
 }
