@@ -21,23 +21,6 @@
                     <button class="rounded-lg bg-rose-600 mb-4 px-4 py-2 text-white" wire:click="deActiveForm"
                             onclick="event.preventDefault()">{{__('cancel')}}</button>
                 </div>
-                <style>
-                    #container {
-                        width: 1000px;
-                        margin: 20px auto;
-                    }
-
-                    .ck-editor__editable[role="textbox"] {
-                        /* editing area */
-                        min-height: 200px;
-                    }
-
-                    .ck-content .image {
-                        /* block images */
-                        max-width: 80%;
-                        margin: 20px auto;
-                    }
-                </style>
                 <div id="container">
                     <div id="editor">
                     </div>
