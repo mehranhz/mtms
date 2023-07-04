@@ -21,7 +21,7 @@
                     <x-nav-link :href="route('test-template.index')" :active="request()->routeIs('test-template.index')">
                         {{ __('Test Scenarios') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('test.index')" :active="request()->routeIs('tests')">
+                    <x-nav-link :href="route('test.index')" :active="request()->routeIs('test.index')">
                         {{ __('Test Reports') }}
                     </x-nav-link>
                 </div>
