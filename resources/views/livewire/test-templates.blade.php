@@ -11,6 +11,9 @@
                     <select
                         class="w-full p-2 rounded-lg text-gray-900 focus:outline focus:outline-offset-0 focus:outline-4 outline-violet-600"
                         name="app">
+                        @if($appIsSet)
+                            <option value="{{$app->id}}" selected>{{$app->title}}</option>
+                        @endif
                         @foreach($apps as $app)
                             <option value="{{$app->id}}">{{$app->title}}</option>
                         @endforeach
@@ -39,7 +42,8 @@
             <button class="rounded-lg bg-indigo-600 mb-4 px-4 py-2 text-white "
                     wire:click="activateForm">{{__('create new scenario')}}</button>
         @endif
-        <table class="table table-fixed table-auto w-full border-collapse border border-2 border-slate-500 text-gray-100">
+        <table
+            class="table table-fixed table-auto w-full border-collapse border border-2 border-slate-500 text-gray-100">
             <thead class="table-header-group w-48">
             <tr class="w-48">
                 <th class="border-collapse border border-slate-500 ">{{__('id')}}</th>
