@@ -25,6 +25,13 @@ return new class extends Migration
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('CASCADE');
             $table->primary(['permission_id','role_id']);
         });
+
+        Schema::create('role_user',function (Blueprint $table){
+            $table->id();
+            $table->unsignedBigInteger('role_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('CASCADE');
+        });
     }
 
     /**
