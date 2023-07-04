@@ -1,5 +1,8 @@
 <div class="flex justify-center w-full py-4 dark:text-indigo-200/50">
     <div class="shadow dark:bg-gray-600/50 w-3/4 p-4 rounded-lg">
+        @if($appIsSet)
+            <h1 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight mb-4">{{__('Application: ')}} {{$app->title}}</h1>
+        @endif
         @if($showCreateForm)
             <form action="{{route('test-template.store')}}" method="post" class="mx-6">
                 @csrf
@@ -34,18 +37,21 @@
             </form>
         @else
             <button class="rounded-lg bg-indigo-600 mb-4 px-4 py-2 text-white "
-                    wire:click="activateForm">{{__('create new template')}}</button>
+                    wire:click="activateForm">{{__('create new scenario')}}</button>
         @endif
-        <table class="table table-fixed table-auto w-full border-collapse border border-2 border-slate-500">
+        <table class="table table-fixed table-auto w-full border-collapse border border-2 border-slate-500 text-gray-100">
             <thead class="table-header-group w-48">
             <tr class="w-48">
                 <th class="border-collapse border border-slate-500 ">{{__('id')}}</th>
-                <th class="border-collapse border border-slate-500 ">{{__('app')}}</th>
+                @if(! $appIsSet)
+                    <th class="border-collapse border border-slate-500 ">{{__('app')}}</th>
+                @endif
                 <th class="border-collapse border border-slate-500 ">{{__('title')}}</th>
                 <th class="border-collapse border border-slate-500 ">{{__('description')}}</th>
                 <th class="border-collapse border border-slate-500 ">{{__('creator')}}</th>
                 <th class="border-collapse border border-slate-500 ">{{__('created at')}}</th>
-                <th class="border-collapse border border-slate-500 ">{{__('control')}}</th>
+                <th class="border-collapse border border-slate-500 ">{{__('cases')}}</th>
+                <th class="border-collapse border border-slate-500 ">{{__('action')}}</th>
 
             </tr>
             </thead>
@@ -53,17 +59,22 @@
             @foreach($templates as $template)
                 <tr class="table-row" wire:key="{{$template->id}}">
                     <td class="table-cell text-center border border-slate-700">{{$template->id}}</td>
-                    <td class="table-cell text-center border border-slate-700">{{$template->app->title}}</td>
+                    @if(! $appIsSet)
+                        <td class="table-cell text-center border border-slate-700">{{$template->app->title}}</td>
+                    @endif
+
                     <td class="table-cell text-center border border-slate-700">{{$template->title}}</td>
                     <td class="table-cell text-center border border-slate-700">{{$template->description}}</td>
                     <td class="table-cell text-center border border-slate-700">{{$template->user->name}}
                         / {{$template->user->email}}</td>
                     <td class="table-cell text-center border border-slate-700">{{$template->created_at}}</td>
                     <td class="table-cell text-center border border-slate-700">
-                        <div class="flex flex-col">
-                            <a href="{{route('test-templates.test-cases',['testTemplate'=>$template->id])}}" class="text-indigo-600">{{__('test cases')}}</a>
-                            <a href="{{route('test.form',['testTemplate'=>$template->id])}}" class="text-indigo-600">{{__('submit result')}}</a>
-                        </div>
+                        <a href="{{route('test-templates.test-cases',['testTemplate'=>$template->id])}}"
+                           class="text-green-400">{{__('test cases')}}</a>
+                    </td>
+                    <td class="table-cell text-center border border-slate-700">
+                        <a href="{{route('test.form',['testTemplate'=>$template->id])}}"
+                           class="text-red-400">{{__('submit result')}}</a>
                     </td>
                 </tr>
             @endforeach

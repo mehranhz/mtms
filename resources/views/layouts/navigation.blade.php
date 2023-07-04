@@ -19,7 +19,7 @@
                         {{ __('Apps') }}
                     </x-nav-link>
                     <x-nav-link :href="route('test-template.index')" :active="request()->routeIs('test-template.index')">
-                        {{ __('Test Templates') }}
+                        {{ __('Test Scenarios') }}
                     </x-nav-link>
                     <x-nav-link :href="route('test.index')" :active="request()->routeIs('tests')">
                         {{ __('Test Reports') }}
