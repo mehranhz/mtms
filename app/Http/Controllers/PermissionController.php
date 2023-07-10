@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Permission\StorePermissionRequest;
 use App\Models\Permission;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -13,23 +14,20 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        //
+        return view('permission.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePermissionRequest $request)
     {
-        //
+        Permission::create([
+            'title'=>$request->title,
+            'description'=>$request->description
+        ]);
+        return back();
     }
 
     /**
@@ -53,7 +51,10 @@ class PermissionController extends Controller
      */
     public function update(Request $request, Permission $permission)
     {
-        //
+        $permission->title = $request->title ?? $permission->title;
+        $permission->description = $request->description ?? $permission->description;
+        $permission->save();
+        return back();
     }
 
     /**
@@ -61,6 +62,7 @@ class PermissionController extends Controller
      */
     public function destroy(Permission $permission)
     {
-        //
+        $permission->delete();
+        return back();
     }
 }
