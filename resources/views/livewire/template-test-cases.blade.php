@@ -32,8 +32,8 @@
                               class="w-full p-2 rounded-lg text-gray-900 focus:outline focus:outline-offset-0 focus:outline-4  focus:outline-violet-600"></textarea>
                 </div>
                 <div class="my-2">
-                    <label for="exception_result" class="text-gray-100">{{__('exception result')}}</label>
-                    <textarea name="exception_result"  cols="30" rows="5"
+                    <label for="expected_result" class="text-gray-100">{{__('expected result')}}</label>
+                    <textarea name="expected_result"  cols="30" rows="5"
                               class="w-full p-2 rounded-lg text-gray-900 focus:outline focus:outline-offset-0 focus:outline-4  focus:outline-violet-600"></textarea>
                 </div>
                 <div class="flex w-full gap-4">

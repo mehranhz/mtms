@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('test_cases', function (Blueprint $table) {
-            Schema::table('test_cases', function (Blueprint $table) {
-                $table->text('test_steps')->nullable();
-                $table->text('test_data')->nullable();
-                $table->text('expected_result')->nullable();
-            });
+        Schema::create('permissions', function (Blueprint $table) {
+            $table->id();
+            $table->string('title',100);
+            $table->string('description')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-
+        Schema::dropIfExists('permissions');
     }
 };

@@ -13,6 +13,7 @@ class TestController extends Controller
      */
     public function index()
     {
+        $this->authorize('test:read');
         return view('test.index');
     }
 
@@ -37,6 +38,7 @@ class TestController extends Controller
      */
     public function show(Test $test)
     {
+        $this->authorize('test:read');
         return view('test.show');
     }
 

@@ -15,6 +15,7 @@ class AppController extends Controller
      */
     public function index()
     {
+        $this->authorize('app:read');
         return view('app.index');
     }
 
@@ -31,6 +32,7 @@ class AppController extends Controller
      */
     public function store(CreateAppRequest $request)
     {
+        $this->authorize('app:write');
         Auth::user()->apps()->create([
             'title' => $request->title,
             'description' => $request->description
@@ -72,6 +74,7 @@ class AppController extends Controller
 
     public function scenarios(App $app)
     {
+        $this->authorize('scenario:read');
         return view('test-template.index',compact('app'));
     }
 }
