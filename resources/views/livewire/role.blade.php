@@ -60,6 +60,7 @@
                 <th class="border-collapse border border-slate-500 ">{{__('description')}}</th>
                 <th class="border-collapse border border-slate-500 ">{{__('created at')}}</th>
                 <th class="border-collapse border border-slate-500 ">{{__('action')}}</th>
+                <th class="border-collapse border border-slate-500 ">{{__('permissions')}}</th>
 
             </tr>
             </thead>
@@ -79,6 +80,10 @@
                             @method('DELETE')
                             <input type="submit" value="delete" class="text-red-400 cursor-pointer">
                         </form>
+                    </td>
+                    <td class="table-cell text-center border border-slate-700">
+                        <a href=""
+                           class="text-indigo-500">{{__('manage permissions')}}</a>
                     </td>
                 </tr>
             @endforeach
