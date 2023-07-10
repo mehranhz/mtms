@@ -54,7 +54,12 @@ class User extends Authenticatable
     public function testCases(){
         return $this->hasMany(TestCase::class);
     }
+
     public function tests(){
         return $this->hasMany(Test::class);
+    }
+
+    public function roles(){
+        return $this->belongsToMany(Role::class);
     }
 }
