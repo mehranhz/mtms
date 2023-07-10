@@ -22,7 +22,7 @@ class PermissionSeeder extends Seeder
                 'scenario:write',
                 'test-case:read',
                 'test-case:write',
-                'test:raed',
+                'test:read',
                 'test:write',
                 'app:read',
                 'app:write',
