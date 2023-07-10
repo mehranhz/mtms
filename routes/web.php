@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TestCaseController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\TestTemplateController;
@@ -44,6 +45,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/test',TestController::class);
     Route::get('/submit-test/{testTemplate}',SubmitTest::class)->name('test.form');
     Route::get('/test-report/{test}',Test::class)->name('test.report');
+    Route::resource('/permission',PermissionController::class);
+    Route::resource('/role',RoleController::class);
 
 });
 
