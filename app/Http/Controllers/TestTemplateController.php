@@ -15,6 +15,7 @@ class TestTemplateController extends Controller
      */
     public function index()
     {
+        $this->authorize('scenario:read');
         return view('test-template.index');
     }
 
@@ -31,6 +32,7 @@ class TestTemplateController extends Controller
      */
     public function store(CreateTestTemplateRequest $request)
     {
+        $this->authorize('scenario:write');
         Auth::user()->testTemplates()->create([
             'title' => $request->title,
             'description' => $request->description,
@@ -72,6 +74,7 @@ class TestTemplateController extends Controller
     }
 
     public function testCases(TestTemplate $testTemplate){
+        $this->authorize('test-case:read');
         $testCases = $testTemplate->testCases;
         return view('test-template.test-cases',compact('testTemplate'));
     }

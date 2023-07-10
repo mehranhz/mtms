@@ -15,7 +15,7 @@ return new class extends Migration
             Schema::table('test_cases', function (Blueprint $table) {
                 $table->text('test_steps')->nullable();
                 $table->text('test_data')->nullable();
-                $table->text('exception_result')->nullable();
+                $table->text('expected_result')->nullable();
             });
         });
     }

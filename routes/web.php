@@ -7,13 +7,14 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TestCaseController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\TestTemplateController;
-use App\Http\Livewire\Apps;
 use App\Http\Livewire\SubmitTest;
 use App\Http\Livewire\TemplateTestCases;
 use App\Http\Livewire\TestTemplates;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Test;
-
+use App\Http\Livewire\RolePermissions;
+use App\Http\Controllers\UserController;
+use App\Http\Livewire\RoleUser;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,6 +49,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/test-report/{test}',Test::class)->name('test.report');
     Route::resource('/permission',PermissionController::class);
     Route::resource('/role',RoleController::class);
+    Route::get('/role/{role}/permissions',RolePermissions::class)->name('role.permissions');
+    Route::put('/role/{role}/sync-permissions',[RoleController::class,'syncPermissions'])->name('role.sync-permissions');
+    Route::get('/user/index',[UserController::class,'index'])->name('user.index');
+    Route::get('/user/{user}/roles',RoleUser::class)->name('user.roles');
+    Route::put('/user/{user}/sync-roles',[UserController::class,'syncRoles'])->name('user.sync-roles');
 
 });
 

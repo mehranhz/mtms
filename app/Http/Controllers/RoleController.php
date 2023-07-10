@@ -14,6 +14,7 @@ class RoleController extends Controller
      */
     public function index()
     {
+        $this->authorize('role:read');
         return view('role.index');
     }
 
@@ -22,6 +23,8 @@ class RoleController extends Controller
      */
     public function store(StoreRoleRequest $request)
     {
+        $this->authorize('role:write');
+
         Role::create([
             'title' => $request->title,
             'description' => $request->description
@@ -34,6 +37,7 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
+        $this->authorize('role:write');
         $role->title = $request->title ?? $role->title;
         $role->description = $request->description ?? $role->description;
         $role->save();
@@ -45,7 +49,14 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
+        $this->authorize('role:write');
         $role->delete();
+        return back();
+    }
+
+    public function syncPermissions(Request $request,Role $role){
+        $this->authorize('role:write');
+        $role->permissions()->sync($request->permission);
         return back();
     }
 }

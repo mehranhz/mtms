@@ -30,13 +30,14 @@ class TestCaseController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('test-case:read');
         Auth::user()->testCases()->create([
             'title'=>$request->title,
             'description'=>$request->description,
             'test_template_id'=>$request->test_template,
             'test_steps'=>$request->test_steps,
             'test_data'=>$request->test_data,
-            'exception_result'=>$request->exception_result,
+            'expected_result'=>$request->exception_result,
         ]);
         return back();
     }

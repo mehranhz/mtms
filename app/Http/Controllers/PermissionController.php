@@ -14,6 +14,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
+        $this->authorize('permission:read');
         return view('permission.index');
     }
 
@@ -23,6 +24,7 @@ class PermissionController extends Controller
      */
     public function store(StorePermissionRequest $request)
     {
+        $this->authorize('permission:write');
         Permission::create([
             'title'=>$request->title,
             'description'=>$request->description
@@ -51,6 +53,7 @@ class PermissionController extends Controller
      */
     public function update(Request $request, Permission $permission)
     {
+        $this->authorize('permission:write');
         $permission->title = $request->title ?? $permission->title;
         $permission->description = $request->description ?? $permission->description;
         $permission->save();
@@ -62,6 +65,7 @@ class PermissionController extends Controller
      */
     public function destroy(Permission $permission)
     {
+        $this->authorize('permission:write');
         $permission->delete();
         return back();
     }

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('role', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
             $table->string('title',100);
             $table->string('description')->nullable();
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('permission_id');
             $table->unsignedBigInteger('role_id');
             $table->foreign('permission_id')->references('id')->on('permissions')->onDelete('CASCADE');
-            $table->foreign('role_id')->references('id')->on('role')->onDelete('CASCADE');
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('CASCADE');
             $table->primary(['permission_id','role_id']);
         });
 
@@ -30,7 +30,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('role_id');
             $table->unsignedBigInteger('user_id');
-            $table->foreign('role_id')->references('id')->on('role')->onDelete('CASCADE');
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('CASCADE');
         });
     }
 
@@ -41,5 +41,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('role');
         Schema::dropIfExists('permission_role');
+        Schema::dropIfExists('role_user');
     }
 };

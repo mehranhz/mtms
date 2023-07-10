@@ -43,23 +43,38 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function apps(){
+    public function apps()
+    {
         return $this->hasMany(App::class);
     }
 
-    public function testTemplates(){
+    public function testTemplates()
+    {
         return $this->hasMany(TestTemplate::class);
     }
 
-    public function testCases(){
+    public function testCases()
+    {
         return $this->hasMany(TestCase::class);
     }
 
-    public function tests(){
+    public function tests()
+    {
         return $this->hasMany(Test::class);
     }
 
-    public function roles(){
+    public function roles()
+    {
         return $this->belongsToMany(Role::class);
+    }
+
+    public function hasPermission(Permission $permission)
+    {
+        foreach ($this->roles as $role) {
+            if ($role->permissions->contains($permission->id)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

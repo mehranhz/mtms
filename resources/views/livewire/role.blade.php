@@ -74,7 +74,8 @@
                     <td class="table-cell text-center border border-slate-700">{{$role->created_at}}</td>
                     <td class="table-cell text-center border border-slate-700">
                         <button
-                           class="text-green-400" wire:click="activateUpdateForm({{$role->id}})">{{__('edit')}}</button>
+                            class="text-green-400"
+                            wire:click="activateUpdateForm({{$role->id}})">{{__('edit')}}</button>
                         <form action="{{route('role.destroy',['role'=>$role->id])}}" method="POST">
                             @csrf
                             @method('DELETE')
@@ -82,7 +83,7 @@
                         </form>
                     </td>
                     <td class="table-cell text-center border border-slate-700">
-                        <a href=""
+                        <a href="{{route('role.permissions',['role'=>$role->id])}}"
                            class="text-indigo-500">{{__('manage permissions')}}</a>
                     </td>
                 </tr>
